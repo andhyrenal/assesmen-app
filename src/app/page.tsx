@@ -6,18 +6,6 @@ import { useState } from "react";
 import axios from 'axios';
 import { CircularProgress } from "@mui/material";
 
-interface Todo {
-  count: number,
-  next: string,
-  previous: string,
-  results: []
-}
-
-interface Pokemon {
-  name: string,
-  url: string
-}
-
 export default function Home() {
   const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon?offset=0&limit=10");
   

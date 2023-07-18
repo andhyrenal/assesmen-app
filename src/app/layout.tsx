@@ -40,7 +40,7 @@ export default function RootLayout({
                     </Link>
                   </li>
                   <li>
-                    <Link href="/compare"
+                    <Link href="/myPokemon"
                       className="flex items-center p-2 text-base font-normal rounded-lg hover:bg-gray-100">
                       <span className="ml-3">My Pokémon</span>
                     </Link>
