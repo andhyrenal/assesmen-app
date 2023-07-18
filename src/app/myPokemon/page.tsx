@@ -1,13 +1,14 @@
 'use client';
 
-import { Card, CardContent } from "@mui/material";
+import { Button, Card, CardActions, CardContent } from "@mui/material";
 import useBookMark from "./page.hooks";
 import getPokemonBG from "@/helpers/getPokemonBG";
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import Image from "next/image";
+import Link from "next/link";
 
 const myPokemons = () => {
     const {pokemons, onClickBookmark} = useBookMark();
-    console.log(pokemons)
     return (
         <>
             <div className="flex gap-10">
@@ -29,6 +30,9 @@ const myPokemons = () => {
                                 {el.name}
                             </h3>
                         </CardContent>
+                        <CardActions className="ml-3">
+                            <Link href={`/${el.name}`} className='text-indigo-700'>See Detail</Link>
+                        </CardActions>
                     </Card>
                 ))}
             </div>

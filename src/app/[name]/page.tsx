@@ -1,14 +1,15 @@
 'use client';
 
 import getPokemonBG from "@/helpers/getPokemonBG";
-import { Button, Card, CardActions, CardContent, LinearProgress } from "@mui/material";
+import { Button, Card, CardActions, CardContent, LinearProgress, Snackbar } from "@mui/material";
 import Image from "next/image";
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 import usePokemonDetail from "./page.hooks";
 
 const detailPokemon = () => {
-    const { data, isLoading, onClickBookmark} = usePokemonDetail();
-
+    const { data, isLoading, onClickBookmark, open, handleClose, message, hasbook} = usePokemonDetail();
+    
     return (
         <>
             {data &&
@@ -44,10 +45,16 @@ const detailPokemon = () => {
                         </Card>
                     </CardContent>
                     <CardActions className="-mt-7 ml-3">
-                        <Button onClick={() => onClickBookmark(data?.data)} className="w-48" variant="contained" startIcon={<BookmarkBorderIcon />}>
+                        <Button onClick={() => onClickBookmark(data?.data)} className="w-48" variant="contained" startIcon={hasbook ? <BookmarkIcon /> : <BookmarkBorderIcon />}>
                             Bookmark
                         </Button>
                     </CardActions>
+                    <Snackbar
+                        open={open}
+                        autoHideDuration={1000}
+                        onClose={handleClose}
+                        message={message}
+                    />
                 </Card>
             }
         </>
