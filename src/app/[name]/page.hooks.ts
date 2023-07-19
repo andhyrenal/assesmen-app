@@ -60,7 +60,7 @@ const usePokemonDetail = () => {
       open,
       handleClose,
       message,
-      hasbook    };
+      hasbook};
   };
   
   export default usePokemonDetail;
