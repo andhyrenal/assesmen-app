@@ -7,7 +7,7 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import usePokemonDetail from "./page.hooks";
 
-const detailPokemon = () => {
+const DetailPokemon = () => {
     const { NewPokemon, isLoading, onClickBookmark, open, handleClose, message, hasbook} = usePokemonDetail();
     
     return (
@@ -61,4 +61,4 @@ const detailPokemon = () => {
     )
 }
 
-export default detailPokemon
+export default DetailPokemon

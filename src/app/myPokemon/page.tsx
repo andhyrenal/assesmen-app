@@ -1,13 +1,13 @@
 'use client';
 
 import { Button, Card, CardActions, CardContent } from "@mui/material";
-import useBookMark from "./page.hooks";
 import getPokemonBG from "@/helpers/getPokemonBG";
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import Image from "next/image";
 import Link from "next/link";
+import useBookMark from "./page.hooks";
 
-const myPokemons = () => {
+const MyPokemons = () => {
     const {pokemons, onClickBookmark} = useBookMark();
     return (
         <>
@@ -40,4 +40,4 @@ const myPokemons = () => {
     )
 }
 
-export default myPokemons
+export default MyPokemons
