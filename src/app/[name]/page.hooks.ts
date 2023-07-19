@@ -12,25 +12,26 @@ const usePokemonDetail = () => {
     const [open, setOpen] = useState(false);
     const [hasbook, setHasBook] = useState(false);
     const [message, setMessage] = useState('');
+    const [NewPokemon, setNewPokemon] = useState<Pokemon | null>(null);
     
     const {data, isLoading} = useQuery(["detail", ], () => fetchData(url))
+
     const fetchData = async (url:string) => {
         const data = await axios.get(url)
         const pokemonList = JSON.parse(String(localStorage.getItem('myPokemonList'))) as Array<Pokemon>;
         data.data.hasBookMarked = Boolean((pokemonList || []).find(el => el.id === data.data.id));
-        return data
+        setHasBook(data.data.hasBookMarked)
+        setNewPokemon(data.data)
+        return NewPokemon
     }
 
     const onClickBookmark = (pokemon: Pokemon) => {
       const {hasBookMarked, id} = pokemon;
       const pokemonList = JSON.parse(String(localStorage.getItem('myPokemonList'))) as Array<Pokemon> || [];
       const newPokemonList = hasBookMarked ? pokemonList.filter(el => el.id !== id) : [...pokemonList, pokemon];
+      pokemon.hasBookMarked = !hasBookMarked;
       setHasBook(!hasBookMarked);
-      newPokemonList.map(el => {
-        if (el.id === id) {
-          el.hasBookMarked = !hasBookMarked
-        }
-      })
+      setNewPokemon(pokemon)
       setMessage(hasBookMarked ? 'Berhasil menghapus Pokemon' : 'Berhasil menambah Pokemon')
       setOpen(true);
       localStorage.setItem('myPokemonList', JSON.stringify(newPokemonList));
@@ -53,7 +54,7 @@ const usePokemonDetail = () => {
     }, [open]);
 
     return {
-      data,
+      NewPokemon,
       isLoading,
       onClickBookmark,
       open,

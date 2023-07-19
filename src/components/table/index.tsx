@@ -173,6 +173,8 @@ interface TableProps {
   handleNextPage: () => void,
   handlePrevPage: () => void,
   actionTable: boolean
+  nextPage: boolean
+  prevPage: boolean
 }
 
 interface TableColumn {
@@ -254,8 +256,8 @@ export default function EnhancedTable(props: TableProps) {
           </Table>
         </TableContainer>
         <div className='flex justify-end text-2xl'>
-          <button className='p-2'onClick={props.handlePrevPage}>&laquo;</button>
-          <button className='p-2' onClick={props.handleNextPage}>&raquo;</button>
+          <button className='p-2'onClick={props.handlePrevPage} disabled={props.prevPage}>&laquo;</button>
+          <button className='p-2' onClick={props.handleNextPage} disabled={props.nextPage}>&raquo;</button>
         </div>
       </Paper>
     </Box>
